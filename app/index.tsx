@@ -21,7 +21,7 @@ import {
 export default function IndexScreen() {
   const [isRegistered, setIsRegistered] = React.useState(false)
   const [status, setStatus] = React.useState<
-    BackgroundFetch.BackgroundFetchStatus | undefined
+    BackgroundFetch.BackgroundFetchStatus | null | undefined
   >()
 
   React.useEffect(() => {
