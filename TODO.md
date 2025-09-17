@@ -1,1 +1,0 @@
-## -|- fetchPlaces failing

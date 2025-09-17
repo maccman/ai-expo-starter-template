@@ -32,7 +32,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         },
       },
     ],
-    'expo-background-fetch',
     'expo-router',
     [
       'expo-splash-screen',
