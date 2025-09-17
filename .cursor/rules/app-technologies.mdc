@@ -6,19 +6,15 @@ alwaysApply: true
 
 ### Frontend
 
-- **iOS/Android** - Expo (React Native + TypeScript)
+- **Core** - Expo (React Native + TypeScript)
+- **Routing** - Expo Router
 - **Navigation** - React Navigation
-- **Maps** - react-native-maps (Google provider)
-- **Native modules** - Google Maps SDK, Google Places SDK, fast image caching
-
-### Backend
-
-- **BFF (Backend for Frontend)** - Edge proxy for Places API
-- **Database** - Postgres (users, friendships, user_places, scores, imports)
-- **APIs** - Google Maps SDK for iOS + Places API
+- **Animations** - React Native Reanimated
+- **UI** - Expo Blur, Expo Glass Effect for glassmorphism
+- **Images** - Expo Image
 
 ### Development
 
-- **Testing** - Vitest
+- **Testing** - Jest
 - **Code Quality** - ESLint + Prettier
 - **Package Management** - pnpm

@@ -31,15 +31,13 @@ alwaysApply: true
 
 # Project Context
 
-Magnifico is a premium, list-first iOS app (Expo/React Native) that ranks nearby **hotels** and **restaurants** using taste heuristics, Google Places data, awards (e.g., Michelin), and your friends' visits/recommendations.
+This is where you describe your project. It's important you update it. For now,
+suffice to say this project is a Expo and React Native starter template.
 
 ## Key Features
 
-- **List-first UI** with a peekable **map overlay** (tap to expand to full map)
-- **Opinionated ranking**: Hotels (only 5★, rating ≥ 4.7), Restaurants (rating ≥ 4.7, price sanity, first-star preference)
-- **Big, fast photos** (Places Photos with attribution)
-- **Friend layer**: "I've been" / "I recommend", avatars on cards
-- **Privacy-first**: store only what we create; respect Places caching/attribution rules
+- Expo and React Native starter template
+- Glassmorphism UI
 
 ## app-technologies.mdc
 
