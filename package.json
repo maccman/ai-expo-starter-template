@@ -4,7 +4,6 @@
   "version": "1.0.0",
   "scripts": {
     "start": "expo start --clear",
-    "reset-project": "node ./scripts/reset-project.js",
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",
@@ -24,8 +23,7 @@
     "device:list": "eas device:list",
     "ios:logs": "npx react-native log-ios",
     "ios:device": "npx expo run:ios --device",
-    "ios:refresh": "npx expo prebuild --platform ios",
-    "sync:agents": "bash -c 'printf \"# Agent Rules\\n\\nGenerated from .cursor/rules\\n\\n\" > AGENTS.md && for file in .cursor/rules/*; do printf \"\\n## %s\\n\\n\" \"$(basename \"$file\")\" >> AGENTS.md && cat \"$file\" >> AGENTS.md && printf \"\\n\" >> AGENTS.md; done'"
+    "ios:refresh": "npx expo prebuild --platform ios"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.2",
