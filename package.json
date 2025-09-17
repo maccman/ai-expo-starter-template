@@ -1,7 +1,10 @@
 {
   "name": "expo-starter-template",
-  "main": "expo-router/entry",
+  "type": "module",
   "version": "1.0.0",
+  "private": true,
+  "description": "Expo Starter Template",
+  "main": "expo-router/entry",
   "scripts": {
     "start": "expo start --clear",
     "android": "expo run:android",
@@ -23,7 +26,8 @@
     "device:list": "eas device:list",
     "ios:logs": "npx react-native log-ios",
     "ios:device": "npx expo run:ios --device",
-    "ios:refresh": "npx expo prebuild --platform ios"
+    "ios:refresh": "npx expo prebuild --platform ios",
+    "ai:check": "pnpm typecheck && pnpm test && pnpm fix && pnpm lint"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.2",
@@ -78,6 +82,5 @@
     "react-dom": "19.1.0",
     "react-native-web": "~0.21.1",
     "typescript": "~5.9.2"
-  },
-  "private": true
+  }
 }

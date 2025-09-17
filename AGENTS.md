@@ -14,9 +14,9 @@ alwaysApply: true
 
 ## Development cycle
 
-1. Run `pnpm install` (you have internet access)
+1. Run `pnpm install` (you have full internet access)
 2. Make your code edits and changes
-3. Finally run `pnpm typecheck` and `pnpm lint`
+3. Finally run `pnpm ai:check` (this will run `typecheck`, `test`, `fix`, and `lint`)
 
 ## Notes
 
@@ -31,7 +31,7 @@ alwaysApply: true
 
 # Project Context
 
-This is where you describe your project. It's important you update it. For now,
+TODO. This is where you describe your project. It's important you update it. For now,
 suffice to say this project is a Expo and React Native starter template.
 
 ## Key Features
@@ -65,14 +65,6 @@ suffice to say this project is a Expo and React Native starter template.
 - **Testing** - Vitest
 - **Code Quality** - ESLint + Prettier
 - **Package Management** - pnpm
-
-## code-conventions.mdc
-
----
-
-description:
-globs: **/\*.ts,**/\*.tsx
-alwaysApply: false
 
 ---
 
@@ -146,16 +138,16 @@ const styles = StyleSheet.create({
 
 ```jsx
 // ✅ GOOD: Components don't manage their own top spacing
-const SectionComponent = () => (
-  <View style={styles.section}>{/* Content without top margin/padding */}</View>
-)
+function SectionComponent () {
+  return <View style={styles.section}>{/* Content without top margin/padding */}</View>
+}
 
 // ❌ AVOID: Components with built-in top spacing
-const SectionComponent = () => (
-  <View style={[styles.section, { marginTop: 20 }]}>
+function SectionComponent () {
+  return <View style={[styles.section, { marginTop: 20 }]}>
     {/* Tightly coupled spacing */}
   </View>
-)
+}
 ```
 
 ## Modern React Native Features to Prefer
@@ -225,7 +217,6 @@ Context:
 - Conventions: small files, single-responsibility, testable interfaces, providers+hooks for state, one component per file, '@/' imports, zod for parsing/validation, no any.
 - Events: define event name constants; payloads are discriminated unions; normalize snake_case (Rust) → camelCase (TS).
 - Rust: offload blocking work with spawn_blocking; emit structured serde-tagged payloads; keep interfaces minimal.
-- Quality gates: Propose a plan first; after edits run cargo check, pnpm typecheck, pnpm lint; fix issues; ensure hooks rules respected.
 - Keep modules small and composable.
 - Add zod schemas for all incoming data; normalize to camelCase once in a bridge layer.
 - Use discriminated unions and type guards; export helper predicates (e.g., isTerminalEvent).
