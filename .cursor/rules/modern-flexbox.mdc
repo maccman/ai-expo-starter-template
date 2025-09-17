@@ -1,0 +1,98 @@
+---
+globs: **/*.tsx
+alwaysApply: false
+---
+
+# Modern React Native Flexbox & Spacing
+
+## Always Use Modern Flexbox Features
+
+### Gap Property (Preferred)
+
+- **Use `gap` for consistent spacing** between flex children instead of manual margins
+- Automatically handles spacing regardless of conditional rendering
+- Single source of truth for spacing values
+
+```jsx
+// ✅ GOOD: Use gap for automatic spacing
+const styles = StyleSheet.create({
+  container: {
+    gap: 16, // Consistent 16px between all children
+    paddingBottom: 20,
+  },
+})
+
+// ❌ AVOID: Manual margins on individual items
+const styles = StyleSheet.create({
+  item: {
+    marginTop: 16, // Hard to maintain, doesn't adapt
+  },
+})
+```
+
+### Flexbox Layout Patterns
+
+#### Container Spacing
+
+```jsx
+// ✅ GOOD: Parent controls spacing
+;<View style={styles.contentSections}>
+  {showDescription && <DescriptionSection />}
+  {showAmenities && <AmenitiesSection />}
+  {showScoring && <ScoringSection />}
+</View>
+
+const styles = StyleSheet.create({
+  contentSections: {
+    gap: 24, // Automatic spacing between sections
+  },
+})
+```
+
+#### Component Interface Design
+
+```jsx
+// ✅ GOOD: Components don't manage their own top spacing
+const SectionComponent = () => (
+  <View style={styles.section}>
+    {/* Content without top margin/padding */}
+  </View>
+)
+
+// ❌ AVOID: Components with built-in top spacing
+const SectionComponent = () => (
+  <View style={[styles.section, { marginTop: 20 }]}>
+    {/* Tightly coupled spacing */}
+  </View>
+)
+```
+
+## Modern React Native Features to Prefer
+
+### Layout
+
+- Use `gap` instead of manual margins between flex children
+- Use `rowGap` and `columnGap` for fine-grained control
+- Prefer `justifyContent` and `alignItems` over absolute positioning
+
+### Responsive Design
+
+- Use `Dimensions.get('window')` sparingly; prefer flexbox ratios
+- Use percentage widths with flexbox for responsive layouts
+- Leverage `flex: 1` for equal distribution
+
+### Best Practices
+
+1. **Single Responsibility**: Parent containers handle spacing, children handle content
+2. **Adaptability**: Layouts should work with conditional rendering
+3. **Maintainability**: Spacing controlled in one place, easy to adjust globally
+4. **Clean Interfaces**: Components shouldn't assume their positioning context
+
+## Migration Pattern
+
+When refactoring spacing:
+
+1. Identify sections that need consistent spacing
+2. Wrap in container with `gap` property
+3. Remove individual `marginTop`/`paddingTop` from children
+4. Test with conditional rendering scenarios

@@ -1,0 +1,24 @@
+---
+alwaysApply: true
+---
+
+## Technologies used
+
+### Frontend
+
+- **iOS/Android** - Expo (React Native + TypeScript)
+- **Navigation** - React Navigation
+- **Maps** - react-native-maps (Google provider)
+- **Native modules** - Google Maps SDK, Google Places SDK, fast image caching
+
+### Backend
+
+- **BFF (Backend for Frontend)** - Edge proxy for Places API
+- **Database** - Postgres (users, friendships, user_places, scores, imports)
+- **APIs** - Google Maps SDK for iOS + Places API
+
+### Development
+
+- **Testing** - Vitest
+- **Code Quality** - ESLint + Prettier
+- **Package Management** - pnpm
