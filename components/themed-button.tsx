@@ -73,12 +73,12 @@ const textStyles = StyleSheet.create({
   },
 })
 
-const getFallbackBackground = (
+function getFallbackBackground(
   variant: NonNullable<ThemedButtonProps['variant']>,
   pressed: boolean,
   disabled: boolean,
   colorScheme: 'light' | 'dark'
-) => {
+) {
   if (disabled) {
     return Colors[colorScheme].buttonDisabled
   }
@@ -101,11 +101,11 @@ const getFallbackBackground = (
   }
 }
 
-const getGlassTint = (
+function getGlassTint(
   variant: NonNullable<ThemedButtonProps['variant']>,
   pressed: boolean,
   disabled: boolean
-) => {
+) {
   if (disabled) {
     return Colors.dark.glassDisabled // Assuming glass is only for dark mode
   }
@@ -133,10 +133,10 @@ const getGlassTint = (
   return pressed ? tint.pressed : tint.default
 }
 
-const getTextVariant = (
+function getTextVariant(
   variant: NonNullable<ThemedButtonProps['variant']>,
   disabled: boolean
-) => {
+) {
   if (disabled) {
     return 'tertiary'
   }

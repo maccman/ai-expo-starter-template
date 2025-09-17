@@ -1,27 +1,30 @@
-import { useEffect } from 'react'
-import React from 'react'
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import 'react-native-reanimated'
 
 import { useFonts } from 'expo-font'
 import { SplashScreen, Tabs } from 'expo-router'
+import React, { useEffect } from 'react'
 
 import { TabBarIcon } from '@/components/navigation/tab-bar-icon'
 import { Colors } from '@/constants/colors'
 import { useColorScheme } from '@/hooks/use-color-scheme'
 
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const SpaceMono = require('../../assets/fonts/SpaceMono-Regular.ttf')
+
 // Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync()
+void SplashScreen.preventAutoHideAsync()
 
 export default function TabLayout() {
   const colorScheme = useColorScheme()
 
   const [loaded] = useFonts({
-    SpaceMono: require('../../assets/fonts/SpaceMono-Regular.ttf'),
+    SpaceMono,
   })
 
   useEffect(() => {
     if (loaded) {
-      SplashScreen.hideAsync()
+      void SplashScreen.hideAsync()
     }
   }, [loaded])
 

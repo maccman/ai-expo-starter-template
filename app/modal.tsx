@@ -1,8 +1,7 @@
-import { Platform, StyleSheet, View } from 'react-native'
-
 import { LinearGradient } from 'expo-linear-gradient'
 import { router } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
+import { Platform, StyleSheet, View } from 'react-native'
 
 import { ThemedButton } from '@/components/themed-button'
 import { ThemedText } from '@/components/themed-text'
@@ -12,7 +11,7 @@ import { registerBackgroundFetchAsync } from '@/lib/tasks'
 
 export default function ModalScreen() {
   const handleScheduleTask = () => {
-    registerBackgroundFetchAsync()
+    void registerBackgroundFetchAsync()
   }
 
   const handleClose = () => {

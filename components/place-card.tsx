@@ -1,12 +1,12 @@
 /**
  * Place card component with shared element support for images and names
  */
-import { Dimensions, Pressable, StyleSheet, View } from 'react-native'
 
 import { BlurView } from 'expo-blur'
 import * as Haptics from 'expo-haptics'
 // import Animated from 'react-native-reanimated' // Will be re-added when shared transitions are stable
 import { Image } from 'expo-image'
+import { Dimensions, Pressable, StyleSheet, View } from 'react-native'
 
 import { ThemedText } from '@/components/themed-text'
 import { ThemedView } from '@/components/themed-view'
@@ -14,7 +14,7 @@ import { Colors } from '@/constants/colors'
 import { Config } from '@/constants/config'
 import { useColorScheme } from '@/hooks/use-color-scheme'
 
-import { CarouselItem } from '../types'
+import type { CarouselItem } from '../types'
 
 interface PlaceCardProps {
   place: CarouselItem
@@ -39,7 +39,7 @@ export default function PlaceCard({
 
   const handlePress = () => {
     if (Config.features.hapticFeedback) {
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+      void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
     }
     onPress(place)
   }

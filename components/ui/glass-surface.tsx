@@ -1,3 +1,8 @@
+import {
+  type GlassStyle,
+  GlassView,
+  isLiquidGlassAvailable,
+} from 'expo-glass-effect'
 import type { PropsWithChildren } from 'react'
 import {
   Platform,
@@ -7,12 +12,6 @@ import {
   type ViewProps,
   type ViewStyle,
 } from 'react-native'
-
-import {
-  type GlassStyle,
-  GlassView,
-  isLiquidGlassAvailable,
-} from 'expo-glass-effect'
 
 import { Colors } from '@/constants/colors'
 import { Config } from '@/constants/config'

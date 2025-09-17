@@ -3,9 +3,10 @@
  */
 import React, { forwardRef, useImperativeHandle, useRef } from 'react'
 import { Dimensions, StyleSheet, View } from 'react-native'
-import Carousel, { ICarouselInstance } from 'react-native-reanimated-carousel'
+import type { ICarouselInstance } from 'react-native-reanimated-carousel'
+import Carousel from 'react-native-reanimated-carousel'
 
-import { CarouselItem } from '@/types'
+import type { CarouselItem } from '@/types'
 
 import PlaceCard from './place-card'
 
@@ -16,7 +17,6 @@ export interface HorizontalPlaceCarouselHandle {
 interface HorizontalPlaceCarouselProps {
   places: CarouselItem[]
   onPlacePress: (place: CarouselItem) => void
-  selectedPlaceId?: string
   onVisiblePlaceChange?: (placeId: string) => void
 }
 
@@ -30,7 +30,7 @@ const HorizontalPlaceCarousel = forwardRef<
   HorizontalPlaceCarouselHandle,
   HorizontalPlaceCarouselProps
 >(function HorizontalPlaceCarousel(
-  { places, onPlacePress, selectedPlaceId, onVisiblePlaceChange },
+  { places, onPlacePress, onVisiblePlaceChange },
   ref
 ) {
   const carouselRef = useRef<ICarouselInstance>(null)
@@ -45,7 +45,9 @@ const HorizontalPlaceCarousel = forwardRef<
   }))
 
   const handleSnapToItem = (index: number) => {
-    if (!onVisiblePlaceChange || places.length === 0) return
+    if (!onVisiblePlaceChange || places.length === 0) {
+      return
+    }
     const place = places[index]
     if (place) {
       onVisiblePlaceChange(place.id)

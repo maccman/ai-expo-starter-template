@@ -1,8 +1,7 @@
-import React from 'react'
-import { StyleSheet, View } from 'react-native'
-
 import { Link } from 'expo-router'
 import * as TaskManager from 'expo-task-manager'
+import React from 'react'
+import { StyleSheet, View } from 'react-native'
 
 import { ThemedButton } from '@/components/themed-button'
 import { ThemedCard } from '@/components/themed-card'
@@ -17,7 +16,7 @@ export default function IndexScreen() {
   const [isRegistered, setIsRegistered] = React.useState(false)
 
   React.useEffect(() => {
-    checkStatusAsync()
+    void checkStatusAsync()
   }, [])
 
   const checkStatusAsync = async () => {
@@ -33,7 +32,7 @@ export default function IndexScreen() {
       await registerBackgroundFetchAsync()
     }
 
-    checkStatusAsync()
+    void checkStatusAsync()
   }
 
   return (

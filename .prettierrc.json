@@ -8,18 +8,5 @@
   "bracketSpacing": true,
   "bracketSameLine": false,
   "arrowParens": "avoid",
-  "endOfLine": "lf",
-  "plugins": ["@trivago/prettier-plugin-sort-imports"],
-  "importOrder": [
-    "^react",
-    "^react-native",
-    "^expo",
-    "^@expo",
-    "^@react-navigation",
-    "<THIRD_PARTY_MODULES>",
-    "^@/",
-    "^[./]"
-  ],
-  "importOrderSeparation": true,
-  "importOrderSortSpecifiers": true
+  "endOfLine": "lf"
 }

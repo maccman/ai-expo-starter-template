@@ -12,7 +12,7 @@
     "web": "expo start --web",
     "lint": "expo lint",
     "typecheck": "tsc --noEmit",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\" --log-level warn",
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "fix": "pnpm lint --fix && pnpm format",
     "test": "jest",
@@ -27,7 +27,7 @@
     "ios:logs": "npx react-native log-ios",
     "ios:device": "npx expo run:ios --device",
     "ios:refresh": "npx expo prebuild --platform ios",
-    "ai:check": "pnpm typecheck && pnpm test && pnpm fix && pnpm lint"
+    "ai:check": "pnpm typecheck && pnpm test && pnpm fix"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.2",

@@ -5,8 +5,6 @@ import { Config } from '@/constants/config'
 import { useColorScheme } from '@/hooks/use-color-scheme'
 
 export type ThemedTextProps = TextProps & {
-  lightColor?: string
-  darkColor?: string
   type?:
     | 'heading1'
     | 'heading2'
@@ -32,8 +30,6 @@ export type ThemedTextProps = TextProps & {
 
 export function ThemedText({
   style,
-  lightColor,
-  darkColor,
   type = 'body',
   variant = 'primary',
   ...rest
