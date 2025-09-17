@@ -47,11 +47,11 @@ export function GlassSurface({
   children,
   style,
   glassEffectStyle = 'regular',
-  tintColor = Colors.glassBase,
+  tintColor,
   isInteractive = false,
   cornerRadius = Config.ui.cardBorderRadius,
-  fallbackBackgroundColor = Colors.glassSurfaceBackground,
-  fallbackBorderColor = Colors.glassBorder,
+  fallbackBackgroundColor,
+  fallbackBorderColor,
   ...viewProps
 }: PropsWithChildren<GlassSurfaceProps>) {
   const baseStyle: ViewStyle = {
@@ -65,7 +65,7 @@ export function GlassSurface({
       <GlassView
         {...viewProps}
         glassEffectStyle={glassEffectStyle}
-        tintColor={tintColor}
+        tintColor={tintColor || Colors.dark.glassBase}
         isInteractive={isInteractive}
         style={composedGlassStyle}
       >
@@ -76,8 +76,9 @@ export function GlassSurface({
 
   const fallbackStyle: ViewStyle = {
     ...baseStyle,
-    backgroundColor: fallbackBackgroundColor,
-    borderColor: fallbackBorderColor,
+    backgroundColor:
+      fallbackBackgroundColor || Colors.dark.glassSurfaceBackground,
+    borderColor: fallbackBorderColor || Colors.dark.glassBorder,
   }
   const composedFallbackStyle = [styles.fallbackBase, fallbackStyle, style]
 
@@ -92,7 +93,7 @@ const styles = StyleSheet.create({
   glassBase: {
     overflow: 'hidden',
     borderWidth: StyleSheet.hairlineWidth,
-    borderColor: Colors.glassBorder,
+    borderColor: Colors.dark.glassBorder,
     backgroundColor: 'transparent',
   },
   fallbackBase: {

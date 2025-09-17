@@ -2,6 +2,7 @@ import { StyleSheet, Text, type TextProps } from 'react-native'
 
 import { Colors } from '@/constants/colors'
 import { Config } from '@/constants/config'
+import { useColorScheme } from '@/hooks/use-color-scheme'
 
 export type ThemedTextProps = TextProps & {
   lightColor?: string
@@ -37,20 +38,22 @@ export function ThemedText({
   variant = 'primary',
   ...rest
 }: ThemedTextProps) {
+  const colorScheme = useColorScheme() ?? 'light'
+
   const getTextColor = () => {
     switch (variant) {
       case 'secondary':
-        return Colors.textSecondary
+        return Colors[colorScheme].textSecondary
       case 'tertiary':
-        return Colors.textTertiary
+        return Colors[colorScheme].textTertiary
       case 'error':
-        return Colors.textError
+        return Colors[colorScheme].textError
       case 'success':
-        return Colors.textSuccess
+        return Colors[colorScheme].textSuccess
       case 'warning':
-        return Colors.textWarning
+        return Colors[colorScheme].textWarning
       default:
-        return Colors.text
+        return Colors[colorScheme].text
     }
   }
 
@@ -135,6 +138,6 @@ const styles = StyleSheet.create({
     fontWeight: Config.typography.fontWeight.medium,
     lineHeight:
       Config.typography.fontSize.lg * Config.typography.lineHeight.relaxed,
-    color: Colors.buttonSecondary,
+    color: Colors.dark.buttonSecondary, // Keep this dark for links
   },
 })

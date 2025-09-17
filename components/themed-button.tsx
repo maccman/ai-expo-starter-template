@@ -8,6 +8,7 @@ import {
 import { GlassSurface } from '@/components/ui/glass-surface'
 import { Colors } from '@/constants/colors'
 import { Config } from '@/constants/config'
+import { useColorScheme } from '@/hooks/use-color-scheme'
 
 import { ThemedText } from './themed-text'
 
@@ -53,7 +54,6 @@ const contentBaseStyle = StyleSheet.create({
   },
   outlined: {
     borderWidth: StyleSheet.hairlineWidth,
-    borderColor: Colors.border,
   },
   ghost: {
     borderWidth: 0,
@@ -73,62 +73,31 @@ const textStyles = StyleSheet.create({
   },
 })
 
-const glassTintByVariant: Record<
-  NonNullable<ThemedButtonProps['variant']>,
-  { default: string; pressed: string }
-> = {
-  primary: {
-    default: Colors.glassPrimary,
-    pressed: Colors.glassPrimaryPressed,
-  },
-  secondary: {
-    default: Colors.glassSecondary,
-    pressed: Colors.glassSecondaryPressed,
-  },
-  tertiary: {
-    default: Colors.glassBase,
-    pressed: Colors.glassBasePressed,
-  },
-  ghost: {
-    default: Colors.glassGhost,
-    pressed: Colors.glassGhostPressed,
-  },
-}
-
-const fallbackBorderByVariant: Record<
-  NonNullable<ThemedButtonProps['variant']>,
-  string
-> = {
-  primary: Colors.glassBorder,
-  secondary: Colors.glassBorder,
-  tertiary: Colors.border,
-  ghost: 'transparent',
-}
-
 const getFallbackBackground = (
   variant: NonNullable<ThemedButtonProps['variant']>,
   pressed: boolean,
-  disabled: boolean
+  disabled: boolean,
+  colorScheme: 'light' | 'dark'
 ) => {
   if (disabled) {
-    return Colors.buttonDisabled
+    return Colors[colorScheme].buttonDisabled
   }
 
   if (pressed) {
-    return Colors.cardHover
+    return Colors[colorScheme].cardHover
   }
 
   switch (variant) {
     case 'primary':
-      return Colors.buttonPrimary
+      return Colors[colorScheme].buttonPrimary
     case 'secondary':
-      return Colors.buttonSecondary
+      return Colors[colorScheme].buttonSecondary
     case 'tertiary':
-      return Colors.card
+      return Colors[colorScheme].card
     case 'ghost':
       return 'transparent'
     default:
-      return Colors.buttonPrimary
+      return Colors[colorScheme].buttonPrimary
   }
 }
 
@@ -138,10 +107,29 @@ const getGlassTint = (
   disabled: boolean
 ) => {
   if (disabled) {
-    return Colors.glassDisabled
+    return Colors.dark.glassDisabled // Assuming glass is only for dark mode
   }
 
-  const tint = glassTintByVariant[variant]
+  const tint =
+    variant === 'primary'
+      ? {
+          default: Colors.dark.glassPrimary,
+          pressed: Colors.dark.glassPrimaryPressed,
+        }
+      : variant === 'secondary'
+        ? {
+            default: Colors.dark.glassSecondary,
+            pressed: Colors.dark.glassSecondaryPressed,
+          }
+        : variant === 'tertiary'
+          ? {
+              default: Colors.dark.glassBase,
+              pressed: Colors.dark.glassBasePressed,
+            }
+          : {
+              default: Colors.dark.glassGhost,
+              pressed: Colors.dark.glassGhostPressed,
+            }
   return pressed ? tint.pressed : tint.default
 }
 
@@ -168,6 +156,7 @@ export function ThemedButton({
   disabled = false,
   ...props
 }: ThemedButtonProps) {
+  const colorScheme = useColorScheme() ?? 'light'
   const pressableStyle: PressableProps['style'] =
     typeof style === 'function'
       ? state => [pressableBaseStyle.wrapper, style(state)]
@@ -185,9 +174,12 @@ export function ThemedButton({
         const fallbackBackgroundColor = getFallbackBackground(
           variant,
           pressState.pressed,
-          disabled
+          disabled,
+          colorScheme
         )
         const glassTint = getGlassTint(variant, pressState.pressed, disabled)
+        const borderColor =
+          variant === 'tertiary' ? Colors[colorScheme].border : 'transparent'
         const borderStyle =
           variant === 'tertiary'
             ? contentBaseStyle.outlined
@@ -200,7 +192,7 @@ export function ThemedButton({
             cornerRadius={Config.ui.buttonBorderRadius}
             tintColor={glassTint}
             fallbackBackgroundColor={fallbackBackgroundColor}
-            fallbackBorderColor={fallbackBorderByVariant[variant]}
+            fallbackBorderColor={borderColor}
             style={[
               contentBaseStyle.inner,
               paddingBySize[size],

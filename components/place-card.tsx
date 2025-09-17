@@ -12,6 +12,7 @@ import { ThemedText } from '@/components/themed-text'
 import { ThemedView } from '@/components/themed-view'
 import { Colors } from '@/constants/colors'
 import { Config } from '@/constants/config'
+import { useColorScheme } from '@/hooks/use-color-scheme'
 
 import { CarouselItem } from '../types'
 
@@ -34,6 +35,8 @@ export default function PlaceCard({
   width,
   transparent,
 }: PlaceCardProps) {
+  const colorScheme = useColorScheme() ?? 'light'
+
   const handlePress = () => {
     if (Config.features.hapticFeedback) {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
@@ -75,10 +78,14 @@ export default function PlaceCard({
         </ThemedText>
         {place.rating && (
           <View style={styles.ratingContainer}>
-            <ThemedText style={[styles.starIcon, { color: Colors.text }]}>
+            <ThemedText
+              style={[styles.starIcon, { color: Colors[colorScheme].text }]}
+            >
               ⭐
             </ThemedText>
-            <ThemedText style={[styles.ratingText, { color: Colors.icon }]}>
+            <ThemedText
+              style={[styles.ratingText, { color: Colors[colorScheme].icon }]}
+            >
               {place.rating.toFixed(1)}
             </ThemedText>
           </View>
@@ -107,7 +114,7 @@ export default function PlaceCard({
     <ThemedView
       style={[
         styles.container,
-        { backgroundColor: Colors.card },
+        { backgroundColor: Colors[colorScheme].card },
         width ? { width } : undefined,
       ]}
     >

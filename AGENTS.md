@@ -149,9 +149,7 @@ const styles = StyleSheet.create({
 ```jsx
 // ✅ GOOD: Components don't manage their own top spacing
 const SectionComponent = () => (
-  <View style={styles.section}>
-    {/* Content without top margin/padding */}
-  </View>
+  <View style={styles.section}>{/* Content without top margin/padding */}</View>
 )
 
 // ❌ AVOID: Components with built-in top spacing
