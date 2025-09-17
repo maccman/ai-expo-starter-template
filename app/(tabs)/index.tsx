@@ -1,7 +1,3 @@
-/**
- * This is the main screen of the app.
- * It's a great place to start building your app.
- */
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 
