@@ -64,6 +64,14 @@ A feature-rich, opinionated starter template for Expo projects, designed to get 
 
 This will open the Expo Dev Tools in your browser. You can then run the app on an iOS Simulator, Android Emulator, or on your physical device using the Expo Go app.
 
+### AI Setup
+
+You will want to customize the following files to your project to get the best out of the AI.
+
+- Update `.cursor/rules/app-description.mdc`
+- Update `.cursor/rules/app-technologies.mdc`
+- Update `AGENTS.md`
+
 ---
 
 ## Project Structure
