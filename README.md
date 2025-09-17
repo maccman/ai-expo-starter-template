@@ -1,23 +1,17 @@
-# Magnifico (Expo) — List-First Hotels & Restaurants
+# Expo Starter Template
 
-A premium, list-first iOS app (Expo/React Native) that ranks nearby **hotels** and **restaurants** using taste heuristics, Google Places data, awards (e.g., Michelin), and your friends’ visits/recommendations.
+A feature-rich, opinionated starter template for Expo projects, designed to get you up and running quickly with a solid foundation.
 
 ---
 
 ## Table of Contents
 
 - [Features](#features)
-- [Architecture](#architecture)
 - [Getting Started](#getting-started)
-- [Env & Secrets](#env--secrets)
-- [Development](#development)
-- [Google Maps/Platform Compliance](#google-mapsplatform-compliance)
-- [Scoring Model (v1)](#scoring-model-v1)
-- [Social & Data Import](#social--data-import)
-- [Testing & Quality](#testing--quality)
-- [Release & OTA](#release--ota)
 - [Project Structure](#project-structure)
-- [Troubleshooting](#troubleshooting)
+- [Development](#development)
+- [Theming & UI](#theming--ui)
+- [Available Scripts](#available-scripts)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -25,54 +19,105 @@ A premium, list-first iOS app (Expo/React Native) that ranks nearby **hotels** a
 
 ## Features
 
-- **List-first UI** with a peekable **map overlay** (tap to expand to full map)
-- **Opinionated ranking**:
-  - Hotels: only 5★, rating ≥ 4.7
-  - Restaurants: rating ≥ 4.7, price sanity, first-star preference
-- **Big, fast photos** (Places Photos with attribution)
-- **Friend layer**: “I’ve been” / “I recommend”, avatars on cards
-- **Imports**: bring saved places from Google Takeout
-- **Privacy-first**: store only what we create; respect Places caching/attribution rules
-
----
-
-## Architecture
-
-- **Client**: Expo (React Native, TypeScript), React Navigation, react-native-maps (Google provider)
-- **Native modules (via dev build)**: Google Maps SDK, Google Places SDK, fast image caching
-- **Backend (BFF)**: Edge proxy for Places (hides keys, enforces TTL & field masks), scoring service, auth/session
-- **DB**: Postgres (users, friendships, user_places, scores, imports). We store **Place IDs** and our own metadata, never long-term cached Google content beyond policy.
+- **Glass UI**: Native iOS glass effect for a modern, visually appealing UI.
+- **Themed Components**: A set of themed components (`ThemedView`, `ThemedText`, `ThemedCard`, `ThemedButton`) that respect the color constants.
+- **Best Practices**:
+  - Centralized color constants in `constants/colors.ts`.
+  - Consistent spacing and typography system in `constants/config.ts`.
+  - Well-organized directory structure (`hooks`, `contexts`, `components`, `types`, etc.).
+- **Example Carousel**: A horizontal carousel component to showcase list-based UI patterns.
+- **Jest Testing**: Pre-configured Jest setup for unit and integration tests.
+- **Comprehensive README**: This guide to help you get started.
 
 ---
 
 ## Getting Started
 
-Requirements:
+### Prerequisites
 
-- Node ≥ 18, pnpm or yarn
+- Node.js >= 18
+- pnpm (or yarn/npm)
 - Expo CLI
 - iOS: Xcode + CocoaPods
-- Google Cloud project with **Maps SDK for iOS** + **Places API** enabled
+- Android: Android Studio + JDK
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+### Installation
 
-## Get started
+1.  **Clone the repository:**
 
-1. Install dependencies
+    ```bash
+    git clone https://github.com/your-username/expo-starter-template.git
+    cd expo-starter-template
+    ```
 
-   ```bash
-   pnpm install
-   ```
+2.  **Install dependencies:**
 
-2. Start the app
+    ```bash
+    pnpm install
+    ```
 
-   ```bash
-   npx expo start
-   ```
+3.  **Start the development server:**
 
-In the output, you'll find options to open the app in a
+    ```bash
+    pnpm start
+    ```
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+This will open the Expo Dev Tools in your browser. You can then run the app on an iOS Simulator, Android Emulator, or on your physical device using the Expo Go app.
+
+---
+
+## Project Structure
+
+The project follows a standard Expo project structure with some additional conventions:
+
+- `app/`: Contains the app's screens and navigation, powered by Expo Router.
+- `assets/`: Static assets like fonts and images.
+- `components/`: Reusable UI components.
+  - `ui/`: Low-level, generic UI primitives.
+- `constants/`: Global constants like colors and configuration.
+- `contexts/`: React contexts for state management.
+- `hooks/`: Custom React hooks.
+- `lib/`: Utility functions and libraries.
+- `types/`: TypeScript type definitions.
+
+---
+
+## Development
+
+- **Linting**: Run `pnpm lint` to check for code style issues.
+- **Type Checking**: Run `pnpm typecheck` to check for TypeScript errors.
+- **Testing**: Run `pnpm test` to run the Jest test suite.
+
+---
+
+## Theming & UI
+
+The template uses a custom theming system built on top of React Native's StyleSheet.
+
+- **Colors**: All colors are defined in `constants/colors.ts`.
+- **Configuration**: Spacing, typography, and other UI constants are in `constants/config.ts`.
+- **Glass UI**: The `GlassSurface` component (`components/ui/glass-surface.tsx`) provides the native iOS glass effect and falls back to a solid color on other platforms.
+
+---
+
+## Available Scripts
+
+- `pnpm start`: Starts the development server.
+- `pnpm ios`: Runs the app on the iOS Simulator.
+- `pnpm android`: Runs the app on the Android Emulator.
+- `pnpm lint`: Lints the codebase.
+- `pnpm typecheck`: Runs the TypeScript compiler.
+- `pnpm test`: Runs the test suite.
+- `pnpm fix`: Automatically fixes linting and formatting errors.
+
+---
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request.
+
+---
+
+## License
+
+This project is licensed under the MIT License.

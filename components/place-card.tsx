@@ -13,11 +13,11 @@ import { ThemedView } from '@/components/themed-view'
 import { Colors } from '@/constants/colors'
 import { Config } from '@/constants/config'
 
-import { Place } from '../types'
+import { CarouselItem } from '../types'
 
 interface PlaceCardProps {
-  place: Place
-  onPress: (place: Place) => void
+  place: CarouselItem
+  onPress: (place: CarouselItem) => void
   width?: number
   transparent?: boolean
 }
