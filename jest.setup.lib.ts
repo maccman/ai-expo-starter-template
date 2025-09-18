@@ -4,7 +4,7 @@ import { config } from 'dotenv'
 config({ path: '.env.test' })
 
 // Stable globals for lib tests
-// @ts-ignore
+// @ts-expect-error - global.__DEV__ is not typed
 global.__DEV__ = true
 
 // Don't mock fetch for lib tests - integration tests need real network calls
